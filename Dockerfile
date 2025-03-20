@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM fedora:41 AS base
+FROM fedora:42 AS base
 
 ARG PUID=2000
 ARG PGID=2000
@@ -39,7 +39,7 @@ RUN chmod +x "/home/${AGENT_USERNAME}/.local/bin/agent-install"
 RUN chmod +x "/home/${AGENT_USERNAME}/.local/bin/agent-start"
 
 RUN \
-  dnf install --assumeyes curl git jq tar hostname libicu
+  dnf install --assumeyes curl git jq tar hostname libicu azure-cli
 
 USER "${AGENT_USERNAME}"
 
