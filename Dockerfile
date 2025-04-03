@@ -39,7 +39,22 @@ RUN chmod +x "/home/${AGENT_USERNAME}/.local/bin/agent-install"
 RUN chmod +x "/home/${AGENT_USERNAME}/.local/bin/agent-start"
 
 RUN \
-  dnf install --assumeyes curl git jq tar hostname libicu azure-cli
+  dnf install --assumeyes \
+    curl git unzip jq tar hostname libicu azure-cli buildah
+
+COPY --from=mikefarah/yq /usr/bin/yq /usr/bin/yq
+
+RUN export OS=$(uname -s | tr '[:upper:]' '[:lower:]') && \
+    export ARCH=$(uname -m) && \
+    curl \
+        --fail \
+        --silent \
+        --location \
+        --output "awscliv2.zip" \
+        "https://awscli.amazonaws.com/awscli-exe-${OS}-${ARCH}.zip" && \
+    unzip -qq awscliv2.zip && \
+    ./aws/install && \
+    rm -rf ./aws/install awscliv2.zip
 
 USER "${AGENT_USERNAME}"
 
