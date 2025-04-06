@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM fedora:42 AS base
+FROM fedora:43 AS base
 
 ARG PUID=2000
 ARG PGID=2000
