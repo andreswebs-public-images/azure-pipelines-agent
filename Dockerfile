@@ -40,7 +40,8 @@ RUN chmod +x "/home/${AGENT_USERNAME}/.local/bin/agent-start"
 
 RUN \
   dnf install --assumeyes \
-    awk curl git unzip jq tar hostname libicu azure-cli buildah
+    awk curl git unzip jq tar hostname libicu
+  # azure-cli buildah
 
 COPY --from=mikefarah/yq /usr/bin/yq /usr/bin/yq
 
