@@ -8,7 +8,7 @@ Azure Pipelines agent on Fedora.
 docker build -t ado-agent .
 ```
 
-## Local Run
+## Run
 
 ```sh
 export AGENT_URL="https://dev.azure.com/example-org"
@@ -19,6 +19,8 @@ AGENT_TOKEN=$(cat ~/example-ado-pat-token.txt)
 export AGENT_TOKEN
 ```
 
+### Local Docker
+
 ```sh
 docker run -it --rm --name ado-agent \
   -e AGENT_URL \
@@ -26,6 +28,21 @@ docker run -it --rm --name ado-agent \
   -e AGENT_NAME \
   -e AGENT_TOKEN \
   ado-agent
+```
+
+## k8s
+
+Manifest: [k8s.yml](k8s.yml)
+
+```sh
+kubectl create secret generic ado-agent \
+    --from-literal=AGENT_URL="${AGENT_URL}" \
+    --from-literal=AGENT_POOL="${AGENT_POOL}" \
+    --from-literal=AGENT_TOKEN="${AGENT_TOKEN}" \
+```
+
+```sh
+kubectl apply -f k8s.yml
 ```
 
 ## Authors
