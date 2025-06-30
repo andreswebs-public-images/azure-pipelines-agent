@@ -65,4 +65,4 @@ RUN  "/home/${AGENT_USERNAME}/.local/bin/agent-install"
 
 ENV PATH="/home/${AGENT_USERNAME}/.local/bin:/home/${AGENT_USERNAME}/bin:${PATH}"
 
-ENTRYPOINT [ "agent-start" ]
+ENTRYPOINT [ "agent-start", "--once" ]
