@@ -51,7 +51,7 @@ AGENT_VERSION="${AGENT_VERSION:-${AGENT_VERSION_LATEST}}"
 # See: https://github.com/microsoft/azure-pipelines-agent/blob/master/docs/node6.md
 AGENT_PACKAGE_NAME_PREFIX="${AGENT_PACKAGE_NAME_PREFIX:-pipelines-agent}"
 
-BASE_DOWNLOAD_URL="https://vstsagentpackage.azureedge.net/agent"
+BASE_DOWNLOAD_URL="https://download.agent.dev.azure.com/agent"
 FILE_NAME="${AGENT_PACKAGE_NAME_PREFIX}-${OS}-${ARCH}-${AGENT_VERSION}.tar.gz"
 DOWNLOAD_URL="${BASE_DOWNLOAD_URL}/${AGENT_VERSION}/${FILE_NAME}"
 
