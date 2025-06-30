@@ -1,4 +1,6 @@
 # syntax=docker/dockerfile:1
+FROM ghcr.io/astral-sh/uv:latest AS uv
+FROM mikefarah/yq AS yq
 
 FROM fedora:43 AS base
 
@@ -43,7 +45,8 @@ RUN \
     awk curl git unzip jq tar hostname libicu
   # azure-cli buildah
 
-COPY --from=mikefarah/yq /usr/bin/yq /usr/bin/yq
+COPY --from=yq /usr/bin/yq /usr/bin/
+COPY --from=uv /uv /uvx /usr/bin/
 
 RUN export OS=$(uname -s | tr '[:upper:]' '[:lower:]') && \
     export ARCH=$(uname -m) && \
