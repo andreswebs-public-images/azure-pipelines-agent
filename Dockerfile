@@ -2,7 +2,7 @@
 FROM ghcr.io/astral-sh/uv:latest AS uv
 FROM mikefarah/yq AS yq
 
-FROM fedora:43 AS base
+FROM fedora:44 AS base
 
 ARG PUID=2000
 ARG PGID=2000
